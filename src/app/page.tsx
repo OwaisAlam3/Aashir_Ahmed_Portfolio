@@ -246,35 +246,110 @@ export default function Page() {
       {/* --------------------------------------
           NAV
       -------------------------------------- */}
+
+      {/* --------------------------------------
+                NAV
+      -------------------------------------- */}
       <motion.header initial={{ opacity:0, y:-20 }} animate={{ opacity:1, y:0 }} transition={{ duration:.7 }}
         style={{ position:'fixed', top:0, left:0, right:0, zIndex:500, background:scrolled?`${C.bg}dd`:'transparent', backdropFilter:scrolled?'blur(24px)':'none', WebkitBackdropFilter:scrolled?'blur(24px)':'none', borderBottom:scrolled?`1px solid ${C.border}`:'1px solid transparent', transition:'all .4s' }}>
-        <div style={{ maxWidth:1300, margin:'0 auto', padding:'0 clamp(20px,4vw,56px)', height:72, display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+        
+        <div style={{ maxWidth:1300, margin:'0 auto', padding:'0 clamp(20px,4vw,56px)', height:72, display:'flex', alignItems:'center', justifyContent:'space-between', position: 'relative' }}>
+          
           <a href="#top" style={{ textDecoration:'none' }} onMouseEnter={onEnter} onMouseLeave={onLeave}>
             <div style={{ display:'flex', alignItems:'center', gap:1 }}>
               <span style={{ fontFamily:"'Plus Jakarta Sans', sans-serif", fontSize:22, fontWeight:800, color:C.text, letterSpacing:'-0.05em' }}>aashir</span>
               <span style={{ fontFamily:"'Fraunces', serif", fontStyle:'italic', fontSize:26, color:C.violet }}>.</span>
             </div>
           </a>
+
+          {/* Desktop Nav */}
           <nav className="desktop-only" style={{ display:'flex', gap:36, alignItems:'center' }}>
             {NAV.map(n => <a key={n} href={`#${n.toLowerCase()}`} className="nav-link" onMouseEnter={onEnter} onMouseLeave={onLeave}>{n}</a>)}
           </nav>
+
           <a href="#contact" className="btn-primary desktop-only" style={{ padding:'11px 22px', fontSize:10 }} onMouseEnter={onEnter} onMouseLeave={onLeave}><span>Hire Me ↗</span></a>
-          <button onClick={() => setMobileOpen(o=>!o)} className="mobile-toggle" style={{ background:'none', border:'none', cursor:'pointer', padding:8, flexDirection:'column', gap:5, alignItems:'flex-end' }}>
+
+          {/* Mobile Toggle */}
+          <button onClick={() => setMobileOpen(o=>!o)} className="mobile-toggle" style={{ background:'none', border:'none', cursor:'pointer', padding:8, display: 'flex', flexDirection:'column', gap:5, alignItems:'flex-end' }}>
             <div style={{ width:22, height:2, background:C.text, transition:'all .3s', transform:mobileOpen?'rotate(45deg) translate(5px,7px)':'none' }} />
             <div style={{ width:14, height:2, background:C.violet, opacity:mobileOpen?0:1, transition:'opacity .3s' }} />
             <div style={{ width:22, height:2, background:C.text, transition:'all .3s', transform:mobileOpen?'rotate(-45deg) translate(5px,-7px)':'none' }} />
           </button>
         </div>
+
+        {/* Mobile Menu Content */}
         <AnimatePresence>
           {mobileOpen && (
-            <motion.div initial={{ height:0, opacity:0 }} animate={{ height:'auto', opacity:1 }} exit={{ height:0, opacity:0 }}
-              style={{ overflow:'hidden', background:C.surface, borderTop:`1px solid ${C.border}` }}>
-              <div style={{ padding:'28px clamp(20px,4vw,56px)', display:'flex', flexDirection:'column', gap:0 }}>
-                {NAV.map((n,i) => (
-                  <motion.a key={n} href={`#${n.toLowerCase()}`} initial={{ opacity:0, x:-14 }} animate={{ opacity:1, x:0 }} transition={{ delay:i*.05 }}
-                    onClick={() => setMobileOpen(false)} style={{ padding:'14px 0', borderBottom:`1px solid ${C.border}`, color:C.muted, textDecoration:'none', fontFamily:"'JetBrains Mono', monospace", fontSize:14, letterSpacing:'.1em' }}>{n}</motion.a>
+            <motion.div 
+              initial={{ height:0, opacity:0 }} 
+              animate={{ height:'auto', opacity:1 }} 
+              exit={{ height:0, opacity:0 }}
+              style={{ 
+                overflow:'hidden', 
+                background:C.surface, 
+                borderTop:`1px solid ${C.border}`,
+                position: 'absolute', // Prevents layout jump
+                top: 72, 
+                left: 0, 
+                right: 0, 
+                zIndex: 499,
+                boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+              }}
+            >
+              <div style={{ padding:'20px clamp(20px,4vw,56px) 40px', display:'flex', flexDirection:'column' }}>
+                {NAV.map((n, i) => (
+                  <motion.a 
+                    key={n} 
+                    href={`#${n.toLowerCase()}`} 
+                    initial={{ opacity:0, x:-14 }} 
+                    animate={{ opacity:1, x:0 }} 
+                    transition={{ delay:i*.05 }}
+                    onClick={(e) => {
+                      e.preventDefault(); // Stop default jump
+                      setMobileOpen(false);
+                      
+                      // Smooth scroll logic for mobile reliability
+                      setTimeout(() => {
+                        const id = n.toLowerCase();
+                        const element = document.getElementById(id);
+                        if (element) {
+                          const offset = 80; // Account for fixed header height
+                          const bodyRect = document.body.getBoundingClientRect().top;
+                          const elementRect = element.getBoundingClientRect().top;
+                          const elementPosition = elementRect - bodyRect;
+                          const offsetPosition = elementPosition - offset;
+
+                          window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                          });
+                        }
+                      }, 300); // Wait for menu close animation
+                    }} 
+                    style={{ 
+                      padding:'18px 0', 
+                      borderBottom:`1px solid ${C.border}`, 
+                      color:C.text, 
+                      textDecoration:'none', 
+                      fontFamily:"'JetBrains Mono', monospace", 
+                      fontSize:13, 
+                      letterSpacing:'.12em',
+                      display: 'block',
+                      textTransform: 'uppercase'
+                    }}
+                  >
+                    {n}
+                  </motion.a>
                 ))}
-                <a href="#contact" onClick={() => setMobileOpen(false)} className="btn-primary" style={{ marginTop:24 }}><span>Hire Me ↗</span></a>
+                
+                <a 
+                  href="#contact" 
+                  onClick={() => setMobileOpen(false)} 
+                  className="btn-primary" 
+                  style={{ marginTop:32, textAlign: 'center' }}
+                >
+                  <span>Hire Me ↗</span>
+                </a>
               </div>
             </motion.div>
           )}
