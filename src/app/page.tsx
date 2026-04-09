@@ -420,7 +420,7 @@ export default function Page() {
             {/* Professional Bio */}
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .56, duration: .7 }}
               style={{ fontSize: 'clamp(15px,1.3vw,17px)', color: C.muted, lineHeight: 1.85, maxWidth: 530, marginBottom: 44, fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-              I'm <strong style={{ color: C.text, fontWeight: 700 }}>Aashir Ahmed</strong> — a Senior Web Engineer.
+              I'm <strong style={{ color: C.text, fontWeight: 700 }}>Aashir Ahmed</strong> - a Senior Web Engineer.
               With <strong style={{ color: C.violet2, fontWeight: 700 }}>5 years of expertise</strong> and
               <strong style={{ color: C.text }}> 400+ successful launches</strong>, I architect scalable
               digital solutions that bridge the gap between visual storytelling and high-performance technical architecture.
