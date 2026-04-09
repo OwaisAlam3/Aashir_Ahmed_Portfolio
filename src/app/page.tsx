@@ -4,9 +4,9 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSp
 import { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 
-/* ═══════════════════════════════════════════════
+/* -----------------------------------------------
    TOKENS
-═══════════════════════════════════════════════ */
+----------------------------------------------- */
 const C = {
   bg:      '#0D0D0F',
   surface: '#131316',
@@ -23,9 +23,9 @@ const C = {
   border:  'rgba(242,240,255,0.07)',
 };
 
-/* ═══════════════════════════════════════════════
+/* -----------------------------------------------
    DATA
-═══════════════════════════════════════════════ */
+----------------------------------------------- */
 const NAV = ['About', 'Services', 'Work', 'Experience', 'Contact'];
 
 const SERVICES = [
@@ -56,9 +56,9 @@ const EXPERIENCE = [
 
 const SKILLS = ['WordPress','PHP','JavaScript','jQuery','React','HTML5 / CSS3','MySQL','REST APIs','ACF','Shopify','Technical SEO','Git','Figma → Code','WooCommerce','PageSpeed 90+'];
 
-/* ═══════════════════════════════════════════════
+/* -----------------------------------------------
    CURSOR HOOK
-═══════════════════════════════════════════════ */
+----------------------------------------------- */
 function useCursor() {
   const mx = useMotionValue(-200), my = useMotionValue(-200);
   const dotX  = useSpring(mx, { stiffness: 800, damping: 50 });
@@ -101,9 +101,9 @@ function useCursor() {
   return { dotX, dotY, ringX, ringY, hovered, setHovered, clicking, visible, isDesktop };
 }
 
-/* ═══════════════════════════════════════════════
+/* -----------------------------------------------
    MINI COMPONENTS
-═══════════════════════════════════════════════ */
+----------------------------------------------- */
 function Tag({ children, color = C.violet }: { children: React.ReactNode; color?: string }) {
   return (
     <span style={{ display:'inline-block', padding:'5px 11px', borderRadius:5, fontSize:10, fontWeight:600, fontFamily:"'JetBrains Mono', monospace", letterSpacing:'0.04em', background:color+'18', border:`1px solid ${color}35`, color }}>
@@ -120,9 +120,9 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ═══════════════════════════════════════════════
+/* -----------------------------------------------
    PAGE
-═══════════════════════════════════════════════ */
+----------------------------------------------- */
 export default function Page() {
   const [mobileOpen,   setMobileOpen]   = useState(false);
   const [hoveredProj,  setHoveredProj]  = useState<number | null>(null);
@@ -225,15 +225,15 @@ export default function Page() {
         }
       `}</style>
 
-      {/* ── AMBIENT ── */}
+      {/* - AMBIENT - */}
       <div aria-hidden style={{ position:'fixed', inset:0, zIndex:0, pointerEvents:'none' }}>
         <div style={{ position:'absolute', top:'-5%', right:'-8%', width:700, height:700, borderRadius:'50%', background:`radial-gradient(circle, ${C.violet}0d 0%, transparent 65%)` }} />
         <div style={{ position:'absolute', top:'45%', left:'-12%', width:600, height:600, borderRadius:'50%', background:`radial-gradient(circle, ${C.coral}08 0%, transparent 65%)` }} />
         <div style={{ position:'absolute', bottom:'5%', right:'20%', width:500, height:500, borderRadius:'50%', background:`radial-gradient(circle, ${C.mint}06 0%, transparent 65%)` }} />
-        <div style={{ position:'absolute', inset:0, opacity:.025, backgroundImage:`linear-gradient(${C.text}40 1px,transparent 1px),linear-gradient(90deg,${C.text}40 1px,transparent 1px)`, backgroundSize:'64px 64px' }} />
+        <div style={{ position:'absolute', inset:0, opacity:.05, backgroundImage:`linear-gradient(${C.text}40 1px,transparent 1px),linear-gradient(90deg,${C.text}40 1px,transparent 1px)`, backgroundSize:'64px 64px' }} />
       </div>
 
-      {/* ── CURSOR ── */}
+      {/* - CURSOR - */}
       {isDesktop && (<>
         <motion.div style={{ position:'fixed', top:0, left:0, zIndex:9999, x:dotX, y:dotY, translateX:'-50%', translateY:'-50%', pointerEvents:'none', mixBlendMode:'difference' }}>
           <motion.div animate={{ width: hovered?10:clicking?5:8, height: hovered?10:clicking?5:8, background: hovered?C.violet:C.text, boxShadow: hovered?`0 0 20px ${C.violet}`:'none' }} transition={{ duration:.15 }} style={{ borderRadius:'50%' }} />
@@ -243,9 +243,9 @@ export default function Page() {
         </motion.div>
       </>)}
 
-      {/* ══════════════════════════════════════
+      {/* --------------------------------------
           NAV
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <motion.header initial={{ opacity:0, y:-20 }} animate={{ opacity:1, y:0 }} transition={{ duration:.7 }}
         style={{ position:'fixed', top:0, left:0, right:0, zIndex:500, background:scrolled?`${C.bg}dd`:'transparent', backdropFilter:scrolled?'blur(24px)':'none', WebkitBackdropFilter:scrolled?'blur(24px)':'none', borderBottom:scrolled?`1px solid ${C.border}`:'1px solid transparent', transition:'all .4s' }}>
         <div style={{ maxWidth:1300, margin:'0 auto', padding:'0 clamp(20px,4vw,56px)', height:72, display:'flex', alignItems:'center', justifyContent:'space-between' }}>
@@ -280,21 +280,36 @@ export default function Page() {
           )}
         </AnimatePresence>
       </motion.header>
-
-      {/* ══════════════════════════════════════
+{/* --------------------------------------
           HERO  - split diagonal layout
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section id="top" ref={heroRef} style={{ position:'relative', zIndex:1, minHeight:'100vh', paddingTop:72, overflow:'hidden' }}>
 
-        {/* ── TWO-COLUMN GRID ── */}
-        <div className="hero-layout" style={{ display:'grid', gridTemplateColumns:'1fr 420px', minHeight:'calc(100vh - 72px)', maxWidth:1300, margin:'0 auto', padding:'0 clamp(24px,5vw,80px)' }}>
+        {/* - TWO-COLUMN GRID - */}
+        <div className="hero-layout" style={{ display:'grid', gridTemplateColumns: isDesktop ? '1fr 420px' : '1fr', minHeight:'calc(100vh - 72px)', maxWidth:1300, margin:'0 auto', padding:'0 clamp(24px,5vw,80px)' }}>
 
           {/* LEFT - text content */}
-          <motion.div style={{ y: textY, display:'flex', flexDirection:'column', justifyContent:'center', paddingTop:'clamp(40px,5vh,60px)', paddingBottom:'clamp(60px,7vh,80px)', paddingRight:40 }}>
+          <motion.div style={{ y: textY, display:'flex', flexDirection:'column', justifyContent:'center', paddingTop:'clamp(40px,5vh,60px)', paddingBottom:'clamp(60px,7vh,80px)', paddingRight: isDesktop ? 40 : 0 }}>
 
-            {/* Top row: status + location */}
+            {/* Top row: status + location + MOBILE PROFILE */}
             <motion.div initial={{ opacity:0, y:14 }} animate={{ opacity:1, y:0 }} transition={{ delay:.05, duration:.7 }}
               style={{ display:'flex', alignItems:'center', gap:12, marginBottom:40, flexWrap:'wrap' }}>
+              
+              {/* Modern App Profile Avatar - Visible only on Mobile */}
+              {!isDesktop && (
+                <motion.div 
+                  initial={{ scale: 0 }} animate={{ scale: 1 }}
+                  style={{ 
+                    width: 44, height: 44, borderRadius: '50%', padding: 2,
+                    background: `linear-gradient(135deg, ${C.violet}, ${C.coral})`,
+                    marginRight: 4, boxShadow: `0 10px 20px rgba(0,0,0,0.3)`
+                  }}>
+                  <div style={{ width: '100%', height: '100%', borderRadius: '50%', overflow: 'hidden', border: `2px solid ${C.bg}`, position: 'relative' }}>
+                    <Image src="/Ashir.jpg" alt="Aashir Ahmed" fill style={{ objectFit: 'cover' }} />
+                  </div>
+                </motion.div>
+              )}
+
               <div style={{ display:'inline-flex', alignItems:'center', gap:8, padding:'7px 16px', borderRadius:100, background:`${C.mint}12`, border:`1px solid ${C.mint}28` }}>
                 <div style={{ width:7, height:7, borderRadius:'50%', background:C.mint, boxShadow:`0 0 10px ${C.mint}`, animation:'pulse-glow 2s ease-in-out infinite' }} />
                 <span style={{ fontSize:10, fontFamily:"'JetBrains Mono', monospace", letterSpacing:'.16em', color:C.mint, fontWeight:600 }}>AVAILABLE NOW</span>
@@ -308,8 +323,8 @@ export default function Page() {
             {/* Big headline */}
             <div style={{ marginBottom:28 }}>
               {[
-                { t:'Senior',       f:"'Plus Jakarta Sans', sans-serif", w:800, c:C.text,    fs:'clamp(56px,8vw,120px)', ls:'-0.05em', fi:'normal'  as const },
-                { t:'Web Dev.',     f:"'Fraunces', serif",               w:600, c:C.violet2, fs:'clamp(56px,8vw,120px)', ls:'-0.03em', fi:'italic'  as const },
+                { t:'Senior',      f:"'Plus Jakarta Sans', sans-serif", w:800, c:C.text,    fs:'clamp(56px,8vw,120px)', ls:'-0.05em', fi:'normal'  as const },
+                { t:'Web Dev.',    f:"'Fraunces', serif",               w:600, c:C.violet2, fs:'clamp(56px,8vw,120px)', ls:'-0.03em', fi:'italic'  as const },
               ].map((line, i) => (
                 <div key={i} style={{ overflow:'hidden' }}>
                   <motion.div initial={{ y:'110%' }} animate={{ y:0 }} transition={{ delay:.15+i*.12, duration:.95, ease:[.16,1,.3,1] }}
@@ -318,7 +333,6 @@ export default function Page() {
                   </motion.div>
                 </div>
               ))}
-              {/* "who delivers." smaller, with animated underline */}
               <div style={{ overflow:'hidden', marginTop:10 }}>
                 <motion.div initial={{ y:'110%' }} animate={{ y:0 }} transition={{ delay:.38, duration:.95, ease:[.16,1,.3,1] }}
                   style={{ display:'inline-flex', alignItems:'baseline', gap:10, fontFamily:"'Plus Jakarta Sans', sans-serif", fontWeight:800, color:C.text, fontSize:'clamp(22px,3vw,48px)', letterSpacing:'-0.04em', lineHeight:1 }}>
@@ -328,14 +342,14 @@ export default function Page() {
               </div>
             </div>
 
-<motion.p initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:.56, duration:.7 }}
-  style={{ fontSize:'clamp(15px,1.3vw,17px)', color:C.muted, lineHeight:1.85, maxWidth:530, marginBottom:44, fontFamily:"'Plus Jakarta Sans', sans-serif" }}>
-  I'm <strong style={{ color:C.text, fontWeight:700 }}> Aashir Ahmed</strong> - Senior Web Engineer. 
-  With <strong style={{ color:C.violet2, fontWeight:700 }}>5 years of industry experience </strong> 
-  and <strong style={{ color:C.text }}>400+ successful launches</strong>, I help brands bridge the 
-  gap between visual storytelling and robust technical architecture through high-performance 
-  web development.
-</motion.p>
+            {/* Professional Bio */}
+            <motion.p initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:.56, duration:.7 }}
+              style={{ fontSize:'clamp(15px,1.3vw,17px)', color:C.muted, lineHeight:1.85, maxWidth:530, marginBottom:44, fontFamily:"'Plus Jakarta Sans', sans-serif" }}>
+              I'm <strong style={{ color:C.text, fontWeight:700 }}>Aashir Ahmed</strong> — a Senior Web Engineer. 
+              With <strong style={{ color:C.violet2, fontWeight:700 }}>5 years of expertise</strong> and 
+              <strong style={{ color:C.text }}> 400+ successful launches</strong>, I architect scalable 
+              digital solutions that bridge the gap between visual storytelling and high-performance technical architecture.
+            </motion.p>
 
             {/* CTAs */}
             <motion.div initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay:.68, duration:.6 }}
@@ -349,9 +363,9 @@ export default function Page() {
               className="stats-grid"
               style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderTop:`1px solid ${C.border}`, paddingTop:32, maxWidth:520, gap:20 }}>
               {[
-                { num:'3+',   lbl:'Years Exp.' },
+                { num:'5+',    lbl:'Years Exp.' },
                 { num:'400+', lbl:'Sites Built' },
-                { num:'90+',  lbl:'PageSpeed'  },
+                { num:'90+',   lbl:'PageSpeed'  },
                 { num:'3',    lbl:'Countries'  },
               ].map((s,i) => (
                 <div key={i}>
@@ -362,119 +376,62 @@ export default function Page() {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT - Stacked / layered photo with geometric shapes */}
-          <motion.div className="hero-right"
-            initial={{ opacity:0, x:50 }} animate={{ opacity:1, x:0 }} transition={{ delay:.25, duration:1.0, ease:[.16,1,.3,1] }}
-            style={{ y: imgY, display:'flex', alignItems:'center', justifyContent:'center', position:'relative', paddingTop:40, paddingBottom:40 }}>
+          {/* RIGHT - Desktop Only Architectural Image */}
+          {isDesktop && (
+            <motion.div className="hero-right"
+              initial={{ opacity:0, x:50 }} animate={{ opacity:1, x:0 }} transition={{ delay:.25, duration:1.0, ease:[.16,1,.3,1] }}
+              style={{ y: imgY, display:'flex', alignItems:'center', justifyContent:'center', position:'relative', paddingTop:40, paddingBottom:40 }}>
 
-            {/* Big violet circle behind */}
-            <motion.div
-              initial={{ scale:.8, opacity:0 }} animate={{ scale:1, opacity:1 }} transition={{ delay:.4, duration:1.2 }}
-              style={{ position:'absolute', width:320, height:320, borderRadius:'50%', background:`radial-gradient(circle, ${C.violet}22 0%, transparent 70%)`, border:`1px solid ${C.violet}20`, top:'50%', left:'50%', transform:'translate(-50%,-50%)', animation:'drift 8s ease-in-out infinite' }} />
+              {/* Decorative Elements */}
+              <motion.div
+                initial={{ scale:.8, opacity:0 }} animate={{ scale:1, opacity:1 }} transition={{ delay:.4, duration:1.2 }}
+                style={{ position:'absolute', width:320, height:320, borderRadius:'50%', background:`radial-gradient(circle, ${C.violet}22 0%, transparent 70%)`, border:`1px solid ${C.violet}20`, top:'50%', left:'50%', transform:'translate(-50%,-50%)', animation:'drift 8s ease-in-out infinite' }} />
 
-            {/* Rotating dashed ring */}
-            <div style={{ position:'absolute', width:380, height:380, borderRadius:'50%', border:`1.5px dashed ${C.violet}25`, top:'50%', left:'50%', transform:'translate(-50%,-50%)', animation:'spin-slow 30s linear infinite', pointerEvents:'none' }}>
-              {/* dot markers on the ring */}
-              {[0,90,180,270].map(deg => (
-                <div key={deg} style={{ position:'absolute', width:6, height:6, borderRadius:'50%', background:C.violet, boxShadow:`0 0 10px ${C.violet}`, top:'50%', left:'50%', transformOrigin:'0 0', transform:`rotate(${deg}deg) translateX(189px) translateY(-3px)` }} />
-              ))}
-            </div>
-            
-<motion.div
-  initial={{ scale: .9, opacity: 0 }}
-  animate={{ scale: 1, opacity: 1 }}
-  transition={{ delay: .5, duration: 1.1, ease: [.16, 1, .3, 1] }}
-  style={{ position: 'relative', zIndex: 3, width: 320, height: 380 }} // Made it slightly taller for a better portrait feel
->
-  {/* Modern Architectural Frame */}
-  <div style={{
-    width: '100%',
-    height: '100%',
-    borderRadius: '80px 20px 80px 20px', // Asymmetric "leaf" shape
-    background: C.card,
-    position: 'relative',
-    overflow: 'hidden',
-    border: `1px solid ${C.border}`,
-    boxShadow: `0 40px 100px rgba(0,0,0,0.5)`,
-  }}>
-    <Image 
-      src="/Ashir.jpg" 
-      alt="Aashir Ahmed" 
-      fill 
-      sizes="320px" 
-      style={{ objectFit: 'cover', objectPosition: 'center top' }} 
-      priority 
-    />
-    
-    {/* Subtle Vignette */}
-    <div style={{ 
-      position: 'absolute', 
-      inset: 0, 
-      background: `linear-gradient(to top, ${C.bg}aa 0%, transparent 40%)`,
-      mixBlendMode: 'multiply'
-    }} />
-  </div>
-
-  {/* Floating Glass Name Card */}
-  <div style={{ 
-    position: 'absolute', 
-    bottom: 20, 
-    left: -20, // Offset to the left to break the symmetry
-    background: `rgba(26, 26, 31, 0.8)`, 
-    backdropFilter: 'blur(20px)', 
-    border: `1px solid ${C.border}`, 
-    borderRadius: 8, 
-    padding: '12px 20px', 
-    zIndex: 4,
-    boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
-  }}>
-    <div style={{ fontSize: 16, fontWeight: 800, color: C.text, fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: '-0.02em' }}>Aashir Ahmed</div>
-    <div style={{ fontSize: 9, color: C.violet2, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '.14em', marginTop: 4 }}>FULL-STACK ENGINEER</div>
-  </div>
-</motion.div>
-
-
-            {/* Corner accent squares */}
-            <motion.div initial={{ opacity:0, scale:.5 }} animate={{ opacity:1, scale:1 }} transition={{ delay:1.0, duration:.6 }}
-              style={{ position:'absolute', top:'14%', left:'2%', width:48, height:48, borderRadius:8, background:`${C.violet}18`, border:`1px solid ${C.violet}35`, display:'flex', alignItems:'center', justifyContent:'center', zIndex:5, animation:'float-badge 4s ease-in-out infinite' }}>
-              <span style={{ fontSize:22, color:C.violet }}>◈</span>
-            </motion.div>
-
-            <motion.div initial={{ opacity:0, scale:.5 }} animate={{ opacity:1, scale:1 }} transition={{ delay:1.1, duration:.6 }}
-              style={{ position:'absolute', top:'18%', right:'4%', zIndex:5, animation:'float-badge 3.5s ease-in-out infinite', animationDelay:'.8s' }}>
-              <div style={{ background:`${C.bg}f2`, backdropFilter:'blur(14px)', border:`1px solid ${C.coral}30`, borderRadius:10, padding:'10px 13px', display:'flex', alignItems:'center', gap:8 }}>
-                <span style={{ fontSize:14 }}>⚡</span>
-                <div>
-                  <div style={{ fontSize:11, fontWeight:700, color:C.text, fontFamily:"'Plus Jakarta Sans', sans-serif", lineHeight:1 }}>PageSpeed</div>
-                  <div style={{ fontSize:9, color:C.muted, fontFamily:"'JetBrains Mono', monospace", marginTop:2 }}>90+ scores</div>
+              <div style={{ position:'absolute', width:380, height:380, borderRadius:'50%', border:`1.5px dashed ${C.violet}25`, top:'50%', left:'50%', transform:'translate(-50%,-50%)', animation:'spin-slow 30s linear infinite', pointerEvents:'none' }}>
+                {[0,90,180,270].map(deg => (
+                  <div key={deg} style={{ position:'absolute', width:6, height:6, borderRadius:'50%', background:C.violet, boxShadow:`0 0 10px ${C.violet}`, top:'50%', left:'50%', transformOrigin:'0 0', transform:`rotate(${deg}deg) translateX(189px) translateY(-3px)` }} />
+                ))}
+              </div>
+              
+              <motion.div
+                initial={{ scale: .9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: .5, duration: 1.1, ease: [.16, 1, .3, 1] }}
+                style={{ position: 'relative', zIndex: 3, width: 320, height: 380 }}
+              >
+                <div style={{ width: '100%', height: '100%', borderRadius: '80px 20px 80px 20px', background: C.card, position: 'relative', overflow: 'hidden', border: `1px solid ${C.border}`, boxShadow: `0 40px 100px rgba(0,0,0,0.5)` }}>
+                  <Image src="/Ashir.jpg" alt="Aashir Ahmed" fill sizes="320px" style={{ objectFit: 'cover', objectPosition: 'center top' }} priority />
+                  <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to top, ${C.bg}aa 0%, transparent 40%)`, mixBlendMode: 'multiply' }} />
                 </div>
-              </div>
-            </motion.div>
 
-            <motion.div initial={{ opacity:0, scale:.5 }} animate={{ opacity:1, scale:1 }} transition={{ delay:1.2, duration:.6 }}
-              style={{ position:'absolute', bottom:'20%', left:'0%', zIndex:5, animation:'float-badge 5s ease-in-out infinite', animationDelay:'.4s' }}>
-              <div style={{ background:`${C.bg}f2`, backdropFilter:'blur(14px)', border:`1px solid ${C.mint}30`, borderRadius:10, padding:'10px 13px', display:'flex', alignItems:'center', gap:8 }}>
-                <span style={{ fontSize:14 }}>🚀</span>
-                <div>
-                  <div style={{ fontSize:11, fontWeight:700, color:C.text, fontFamily:"'Plus Jakarta Sans', sans-serif", lineHeight:1 }}>400+ Sites</div>
-                  <div style={{ fontSize:9, color:C.muted, fontFamily:"'JetBrains Mono', monospace", marginTop:2 }}>delivered</div>
+                {/* Glass Name Card */}
+                <div style={{ position: 'absolute', bottom: 20, left: -20, background: `rgba(26, 26, 31, 0.8)`, backdropFilter: 'blur(20px)', border: `1px solid ${C.border}`, borderRadius: 8, padding: '12px 20px', zIndex: 4, boxShadow: '0 20px 40px rgba(0,0,0,0.4)' }}>
+                  <div style={{ fontSize: 16, fontWeight: 800, color: C.text, fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: '-0.02em' }}>Aashir Ahmed</div>
+                  <div style={{ fontSize: 9, color: C.violet2, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '.14em', marginTop: 4 }}>FULL-STACK ENGINEER</div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
 
-            <motion.div initial={{ opacity:0, scale:.5 }} animate={{ opacity:1, scale:1 }} transition={{ delay:1.3, duration:.6 }}
-              style={{ position:'absolute', bottom:'22%', right:'2%', zIndex:5 }}>
-              <div style={{ background:`${C.violet}18`, border:`1px solid ${C.violet}35`, borderRadius:8, padding:'8px 12px', display:'flex', alignItems:'center', gap:6 }}>
-                <div style={{ width:6, height:6, borderRadius:'50%', background:C.mint, boxShadow:`0 0 8px ${C.mint}`, animation:'pulse-glow 2s ease-in-out infinite' }} />
-                <span style={{ fontSize:9, fontWeight:600, fontFamily:"'JetBrains Mono', monospace", letterSpacing:'.14em', color:C.mint }}>AVAILABLE</span>
-              </div>
-            </motion.div>
+              {/* Badges */}
+              <motion.div initial={{ opacity:0, scale:.5 }} animate={{ opacity:1, scale:1 }} transition={{ delay:1.0, duration:.6 }}
+                style={{ position:'absolute', top:'14%', left:'2%', width:48, height:48, borderRadius:8, background:`${C.violet}18`, border:`1px solid ${C.violet}35`, display:'flex', alignItems:'center', justifyContent:'center', zIndex:5, animation:'float-badge 4s ease-in-out infinite' }}>
+                <span style={{ fontSize:22, color:C.violet }}>◈</span>
+              </motion.div>
 
-          </motion.div>
-        </div>{/* end hero grid */}
+              <motion.div initial={{ opacity:0, scale:.5 }} animate={{ opacity:1, scale:1 }} transition={{ delay:1.1, duration:.6 }}
+                style={{ position:'absolute', top:'18%', right:'4%', zIndex:5, animation:'float-badge 3.5s ease-in-out infinite', animationDelay:'.8s' }}>
+                <div style={{ background:`${C.bg}f2`, backdropFilter:'blur(14px)', border:`1px solid ${C.coral}30`, borderRadius:10, padding:'10px 13px', display:'flex', alignItems:'center', gap:8 }}>
+                  <span style={{ fontSize:14 }}>⚡</span>
+                  <div>
+                    <div style={{ fontSize:11, fontWeight:700, color:C.text, fontFamily:"'Plus Jakarta Sans', sans-serif", lineHeight:1 }}>PageSpeed</div>
+                    <div style={{ fontSize:9, color:C.muted, fontFamily:"'JetBrains Mono', monospace", marginTop:2 }}>90+ scores</div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </div>
       </section>
-
-      {/* ── MARQUEE ── */}
+      {/* - MARQUEE - */}
       <div style={{ background:C.surface, borderTop:`1px solid ${C.border}`, borderBottom:`1px solid ${C.border}`, padding:'18px 0', overflow:'hidden', position:'relative', zIndex:1 }}>
         <div className="marquee-t">
           {[...SKILLS,...SKILLS].map((s,i) => (
@@ -485,9 +442,9 @@ export default function Page() {
         </div>
       </div>
 
-      {/* ══════════════════════════════════════
+      {/* --------------------------------------
           ABOUT
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section id="about" style={{ padding:'clamp(80px,10vh,140px) clamp(24px,5vw,80px)', position:'relative', zIndex:1 }}>
         <div style={{ maxWidth:1300, margin:'0 auto', display:'grid', gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))', gap:80, alignItems:'center' }}>
           <motion.div initial={{ opacity:0, x:-30 }} whileInView={{ opacity:1, x:0 }} viewport={{ once:true }} transition={{ duration:.8 }}>
@@ -522,9 +479,9 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
+      {/* --------------------------------------
           SERVICES
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section id="services" style={{ padding:'clamp(80px,10vh,140px) clamp(24px,5vw,80px)', background:C.surface, position:'relative', zIndex:1 }}>
         <div style={{ maxWidth:1300, margin:'0 auto' }}>
           <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:.7 }} style={{ marginBottom:64 }}>
@@ -556,9 +513,9 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
+      {/* --------------------------------------
           PROJECTS - hover-preview table layout
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section id="work" style={{ padding:'clamp(80px,10vh,140px) clamp(24px,5vw,80px)', position:'relative', zIndex:1 }}>
         <div style={{ maxWidth:1300, margin:'0 auto' }}>
           <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:.7 }} style={{ marginBottom:64 }}>
@@ -690,9 +647,9 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
+      {/* --------------------------------------
           EXPERIENCE
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section id="experience" style={{ padding:'clamp(80px,10vh,140px) clamp(24px,5vw,80px)', background:C.surface, position:'relative', zIndex:1 }}>
         <div style={{ maxWidth:1300, margin:'0 auto' }}>
           <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:.7 }} style={{ marginBottom:64 }}>
@@ -722,7 +679,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ── CTA BANNER ── */}
+      {/* - CTA BANNER - */}
       <section style={{ padding:'clamp(40px,5vh,60px) clamp(24px,5vw,80px)', position:'relative', zIndex:1 }}>
         <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
           style={{ maxWidth:1300, margin:'0 auto', borderRadius:24, background:`linear-gradient(135deg, ${C.violet} 0%, #5B3FE4 100%)`, padding:'clamp(44px,5vw,72px)', display:'flex', flexWrap:'wrap', alignItems:'center', justifyContent:'space-between', gap:32, position:'relative', overflow:'hidden' }}>
@@ -748,9 +705,9 @@ export default function Page() {
         </motion.div>
       </section>
 
-      {/* ══════════════════════════════════════
+      {/* -------------------------------------
           CONTACT
-      ══════════════════════════════════════ */}
+      -------------------------------------- */}
       <section id="contact" style={{ padding:'clamp(80px,10vh,140px) clamp(24px,5vw,80px)', background:C.surface, position:'relative', zIndex:1 }}>
         <div style={{ maxWidth:1300, margin:'0 auto' }}>
           <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} style={{ marginBottom:64 }}>
@@ -844,7 +801,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ── FOOTER ── */}
+      {/* - FOOTER - */}
       <footer style={{ background:C.bg, borderTop:`1px solid ${C.border}`, position:'relative', zIndex:1 }}>
         <div style={{ maxWidth:1300, margin:'0 auto', padding:'clamp(44px,5vw,64px) clamp(24px,5vw,80px)' }}>
           <div className="footer-grid" style={{ display:'grid', gridTemplateColumns:'2fr 1fr 1fr', gap:48, marginBottom:48 }}>
