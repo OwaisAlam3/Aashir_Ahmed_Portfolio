@@ -19,7 +19,7 @@ const C = {
   amber:   '#FFB830',
   text:    '#F2F0FF',
   muted:   'rgba(242,240,255,0.5)',
-  faint:   'rgba(242,240,255,0.08)',
+  faint:   'rgba(242,240,255,0.2)',
   border:  'rgba(242,240,255,0.07)',
 };
 
@@ -31,7 +31,7 @@ const NAV = ['About', 'Services', 'Work', 'Experience', 'Contact'];
 const SERVICES = [
   { num:'01', icon:'◈', title:'WordPress Development',    desc:'Custom themes, plugins, and ACF-powered dynamic content. Built to rank, load fast, and convert.',                                                                  tags:['Custom Themes','Plugin Dev','ACF','WooCommerce','PHP'],        color:C.violet },
   { num:'02', icon:'◉', title:'Shopify & eCommerce',      desc:'Conversion-optimized storefronts on Shopify, Wix, and Squarespace. Payment integrations that turn visitors into buyers.',                                          tags:['Shopify','Wix','Squarespace','Custom Checkout','UX'],          color:C.coral  },
-  { num:'03', icon:'⬡', title:'API & Backend Integrations',desc:'CRMs, payment gateways, booking systems — seamlessly wired in. Connecting your platform to every tool your business depends on.',                                tags:['REST APIs','JSON','Payment Gateways','CRM','MySQL'],           color:C.mint   },
+  { num:'03', icon:'⬡', title:'API & Backend Integrations',desc:'CRMs, payment gateways, booking systems - seamlessly wired in. Connecting your platform to every tool your business depends on.',                                tags:['REST APIs','JSON','Payment Gateways','CRM','MySQL'],           color:C.mint   },
   { num:'04', icon:'◎', title:'SEO & Performance',        desc:'Technical SEO, schema markup, Core Web Vitals. Consistently achieving 90+ PageSpeed scores that rank where your customers are searching.',                        tags:['Technical SEO','Schema','PageSpeed 90+','CDN','Caching'],     color:C.violet2},
   { num:'05', icon:'◫', title:'Frontend Development',     desc:'Responsive, pixel-perfect interfaces from Figma, PSD, or XD. Clean HTML5/CSS3/JS that works flawlessly across every device.',                                    tags:['HTML5','CSS3','JavaScript','jQuery','React'],                  color:C.coral  },
   { num:'06', icon:'⬢', title:'Security & Scaling',       desc:'Hardening sites against threats and preparing for serious growth. Security audits and performance infrastructure for high traffic.',                              tags:['Security Audits','SSL','Scalability','Backups','Monitoring'],  color:C.mint   },
@@ -282,14 +282,14 @@ export default function Page() {
       </motion.header>
 
       {/* ══════════════════════════════════════
-          HERO  — split diagonal layout
+          HERO  - split diagonal layout
       ══════════════════════════════════════ */}
       <section id="top" ref={heroRef} style={{ position:'relative', zIndex:1, minHeight:'100vh', paddingTop:72, overflow:'hidden' }}>
 
         {/* ── TWO-COLUMN GRID ── */}
         <div className="hero-layout" style={{ display:'grid', gridTemplateColumns:'1fr 420px', minHeight:'calc(100vh - 72px)', maxWidth:1300, margin:'0 auto', padding:'0 clamp(24px,5vw,80px)' }}>
 
-          {/* LEFT — text content */}
+          {/* LEFT - text content */}
           <motion.div style={{ y: textY, display:'flex', flexDirection:'column', justifyContent:'center', paddingTop:'clamp(40px,5vh,60px)', paddingBottom:'clamp(60px,7vh,80px)', paddingRight:40 }}>
 
             {/* Top row: status + location */}
@@ -328,13 +328,14 @@ export default function Page() {
               </div>
             </div>
 
-            {/* Bio */}
-            <motion.p initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:.56, duration:.7 }}
-              style={{ fontSize:'clamp(15px,1.3vw,17px)', color:C.muted, lineHeight:1.85, maxWidth:500, marginBottom:44, fontFamily:"'Plus Jakarta Sans', sans-serif" }}>
-              I'm <strong style={{ color:C.text, fontWeight:700 }}>Aashir Ahmed</strong> — 3+ years,{' '}
-              <strong style={{ color:C.violet2, fontWeight:700 }}>400+ websites delivered</strong>.{' '}
-              WordPress, Shopify, custom frontend — sites that rank, load fast, and convert.
-            </motion.p>
+<motion.p initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }} transition={{ delay:.56, duration:.7 }}
+  style={{ fontSize:'clamp(15px,1.3vw,17px)', color:C.muted, lineHeight:1.85, maxWidth:530, marginBottom:44, fontFamily:"'Plus Jakarta Sans', sans-serif" }}>
+  I'm <strong style={{ color:C.text, fontWeight:700 }}> Aashir Ahmed</strong> - Senior Web Engineer. 
+  With <strong style={{ color:C.violet2, fontWeight:700 }}>5 years of industry experience </strong> 
+  and <strong style={{ color:C.text }}>400+ successful launches</strong>, I help brands bridge the 
+  gap between visual storytelling and robust technical architecture through high-performance 
+  web development.
+</motion.p>
 
             {/* CTAs */}
             <motion.div initial={{ opacity:0, y:16 }} animate={{ opacity:1, y:0 }} transition={{ delay:.68, duration:.6 }}
@@ -361,7 +362,7 @@ export default function Page() {
             </motion.div>
           </motion.div>
 
-          {/* RIGHT — Stacked / layered photo with geometric shapes */}
+          {/* RIGHT - Stacked / layered photo with geometric shapes */}
           <motion.div className="hero-right"
             initial={{ opacity:0, x:50 }} animate={{ opacity:1, x:0 }} transition={{ delay:.25, duration:1.0, ease:[.16,1,.3,1] }}
             style={{ y: imgY, display:'flex', alignItems:'center', justifyContent:'center', position:'relative', paddingTop:40, paddingBottom:40 }}>
@@ -496,7 +497,7 @@ export default function Page() {
               <span style={{ fontFamily:"'Fraunces', serif", fontStyle:'italic', fontWeight:400, color:C.violet2 }}>that mean business.</span>
             </h2>
             <p style={{ fontSize:16, color:C.muted, lineHeight:1.9, marginBottom:18 }}>With a Computer Science degree from Iqra University (CGPA 3.1) and 3+ years in the industry, I've delivered over 400 fully responsive, high-performing websites for clients across the USA, Canada, and beyond.</p>
-            <p style={{ fontSize:16, color:C.muted, lineHeight:1.9, marginBottom:36 }}>I specialize in WordPress, Shopify, and custom frontend development — with a sharp eye for SEO, performance, and converting visitors into leads.</p>
+            <p style={{ fontSize:16, color:C.muted, lineHeight:1.9, marginBottom:36 }}>I specialize in WordPress, Shopify, and custom frontend development - with a sharp eye for SEO, performance, and converting visitors into leads.</p>
             <div style={{ display:'flex', gap:12, flexWrap:'wrap' }}>
               <a href="/resume.pdf" target="_blank" className="btn-primary" onMouseEnter={onEnter} onMouseLeave={onLeave}><span>Download CV ↓</span></a>
               <a href="mailto:aashira28@gmail.com" className="btn-ghost" onMouseEnter={onEnter} onMouseLeave={onLeave}>Email Me</a>
@@ -507,7 +508,7 @@ export default function Page() {
               <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg, ${C.violet}, ${C.coral})` }} />
               <div style={{ fontSize:9, fontFamily:"'JetBrains Mono', monospace", color:C.violet, letterSpacing:'.2em', textTransform:'uppercase', marginBottom:10 }}>Education</div>
               <div style={{ fontSize:19, fontWeight:700, color:C.text, fontFamily:"'Plus Jakarta Sans', sans-serif", marginBottom:4, letterSpacing:'-0.02em' }}>Bachelor of Computer Science</div>
-              <div style={{ fontSize:15, color:C.muted, fontFamily:"'Fraunces', serif", fontStyle:'italic', marginBottom:4 }}>Iqra University (Official)</div>
+              <div style={{ fontSize:15, color:C.muted, fontFamily:"'Fraunces', serif", fontStyle:'italic', marginBottom:4 }}>Iqra University</div>
               <div style={{ fontSize:11, color:C.faint, fontFamily:"'JetBrains Mono', monospace" }}>2017 – 2021 · CGPA: 3.1</div>
             </div>
             <div style={{ display:'flex', flexWrap:'wrap', gap:8 }}>
@@ -530,7 +531,7 @@ export default function Page() {
             <Eyebrow>What I Do</Eyebrow>
             <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'space-between', alignItems:'flex-end', gap:24 }}>
               <h2 style={{ fontFamily:"'Plus Jakarta Sans', sans-serif", fontSize:'clamp(30px,4.5vw,64px)', fontWeight:800, color:C.text, letterSpacing:'-0.04em', lineHeight:1 }}>Services</h2>
-              <p style={{ fontSize:16, color:C.muted, maxWidth:400, lineHeight:1.8 }}>End-to-end web development — first wireframe to live, ranking website.</p>
+              <p style={{ fontSize:16, color:C.muted, maxWidth:400, lineHeight:1.8 }}>End-to-end web development - first wireframe to live, ranking website.</p>
             </div>
           </motion.div>
           <div className="svc-grid" style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:16 }}>
@@ -556,7 +557,7 @@ export default function Page() {
       </section>
 
       {/* ══════════════════════════════════════
-          PROJECTS — hover-preview table layout
+          PROJECTS - hover-preview table layout
       ══════════════════════════════════════ */}
       <section id="work" style={{ padding:'clamp(80px,10vh,140px) clamp(24px,5vw,80px)', position:'relative', zIndex:1 }}>
         <div style={{ maxWidth:1300, margin:'0 auto' }}>
@@ -564,15 +565,15 @@ export default function Page() {
             <Eyebrow>Selected Work</Eyebrow>
             <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'space-between', alignItems:'flex-end', gap:24 }}>
               <h2 style={{ fontFamily:"'Plus Jakarta Sans', sans-serif", fontSize:'clamp(30px,4.5vw,64px)', fontWeight:800, color:C.text, letterSpacing:'-0.04em', lineHeight:1 }}>Live Projects</h2>
-              <p style={{ fontSize:16, color:C.muted, maxWidth:400, lineHeight:1.8 }}>Real sites, real results — built for businesses across North America.</p>
+              <p style={{ fontSize:16, color:C.muted, maxWidth:400, lineHeight:1.8 }}>Real sites, real results - built for businesses across North America.</p>
             </div>
           </motion.div>
 
           {/* Table + floating preview */}
           <div style={{ position:'relative' }}>
 
-            {/* Floating image preview — desktop */}
-{/* Floating image preview — desktop */}
+            {/* Floating image preview - desktop */}
+{/* Floating image preview - desktop */}
 <div className="proj-preview" style={{ 
   position:'fixed', 
   top:'50%', 
@@ -668,7 +669,7 @@ export default function Page() {
                     <div style={{ fontSize:11, color:C.muted, fontFamily:"'JetBrains Mono', monospace", letterSpacing:'.08em', marginTop:4 }}>{p.category}</div>
                   </div>
 
-                  {/* tags — hide on small */}
+                  {/* tags - hide on small */}
                   <div className="desktop-only" style={{ display:'flex', gap:6, flexWrap:'wrap', justifyContent:'flex-end' }}>
                     {p.tags.map((t,j) => <Tag key={j} color={p.color}>{t}</Tag>)}
                   </div>
@@ -758,7 +759,7 @@ export default function Page() {
           </motion.div>
           <div className="contact-grid" style={{ display:'grid', gridTemplateColumns:'1fr 1.3fr', gap:64, alignItems:'start' }}>
             <div>
-              <p style={{ fontSize:16, color:C.muted, lineHeight:1.9, marginBottom:40, maxWidth:400 }}>New website, performance overhaul, or long-term dev partner — I'd love to hear what you're building.</p>
+              <p style={{ fontSize:16, color:C.muted, lineHeight:1.9, marginBottom:40, maxWidth:400 }}>New website, performance overhaul, or long-term dev partner - I'd love to hear what you're building.</p>
               <div style={{ display:'flex', flexDirection:'column', gap:10, marginBottom:40 }}>
                 {[
                   { icon:'✉', label:'Email',    value:'aashira28@gmail.com', href:'mailto:aashira28@gmail.com' },
@@ -831,7 +832,7 @@ export default function Page() {
                   </div>
                   <button type="submit" disabled={formStatus==='loading'} className="btn-primary" onMouseEnter={onEnter} onMouseLeave={onLeave}
                     style={{ padding:'16px', fontSize:11, width:'100%', marginTop:4, background:formStatus==='sent'?C.mint:formStatus==='error'?C.coral:C.violet }}>
-                    <span>{{ idle:'Send Message ↗', loading:'Sending...', sent:"Sent! I'll be in touch ✓", error:'Failed — email me directly' }[formStatus]}</span>
+                    <span>{{ idle:'Send Message ↗', loading:'Sending...', sent:"Sent! I'll be in touch ✓", error:'Failed - email me directly' }[formStatus]}</span>
                   </button>
                   <p style={{ fontSize:11, color:C.muted, textAlign:'center', fontFamily:"'JetBrains Mono', monospace" }}>
                     Or: <a href="mailto:aashira28@gmail.com" style={{ color:C.violet2, textDecoration:'none' }}>aashira28@gmail.com</a>
