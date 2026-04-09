@@ -629,7 +629,7 @@ export default function Page() {
               I build websites<br />
               <span style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontWeight: 400, color: C.violet2 }}>that mean business.</span>
             </h2>
-            <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.9, marginBottom: 18 }}>Delivered over 400 fully responsive, high-performing websites for clients across the USA, Canada, and beyond.</p>
+            <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.9, marginBottom: 18 }}>With a Computer Science Degree from Iqra University and having Over 5+ years in the Industry. I've delivered over 400 fully responsive, high-performing websites for clients across the USA, Canada, and beyond.</p>
             <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.9, marginBottom: 36 }}>I specialize in WordPress, Shopify, and custom frontend development - with a sharp eye for SEO, performance, and converting visitors into leads.</p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a href="/resume.pdf" target="_blank" className="btn-primary" onMouseEnter={onEnter} onMouseLeave={onLeave}><span>Download CV ↓</span></a>
