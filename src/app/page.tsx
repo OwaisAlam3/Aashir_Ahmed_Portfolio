@@ -633,7 +633,7 @@ export default function Page() {
             <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.9, marginBottom: 36 }}>I specialize in WordPress, Shopify, and custom frontend development - with a sharp eye for SEO, performance, and converting visitors into leads.</p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
               <a href="/resume.pdf" target="_blank" className="btn-primary" onMouseEnter={onEnter} onMouseLeave={onLeave}><span>Download CV ↓</span></a>
-              <a href="mailto:aashira28@gmail.com" className="btn-ghost" onMouseEnter={onEnter} onMouseLeave={onLeave}>Email Me</a>
+              <a href="mailto:aaashirahmed.official@gmail.com" className="btn-ghost" onMouseEnter={onEnter} onMouseLeave={onLeave}>Email Me</a>
             </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: .8, delay: .1 }}>
@@ -873,9 +873,9 @@ export default function Page() {
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '15px 28px', borderRadius: 10, background: '#fff', color: C.violet, fontFamily: "'JetBrains Mono', monospace", fontSize: 11, fontWeight: 700, textDecoration: 'none', letterSpacing: '.1em', transition: 'all .3s' }}>
               START A PROJECT ↗
             </a>
-            <a href="mailto:aashira28@gmail.com" onMouseEnter={onEnter} onMouseLeave={onLeave}
+            <a href="mailto:aaashirahmed.official@gmail.com" onMouseEnter={onEnter} onMouseLeave={onLeave}
               style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 22px', borderRadius: 10, background: 'rgba(255,255,255,0.12)', color: '#fff', fontFamily: "'JetBrains Mono', monospace", fontSize: 10, textDecoration: 'none', letterSpacing: '.08em', border: '1px solid rgba(255,255,255,0.2)' }}>
-              aashira28@gmail.com
+              aaashirahmed.official@gmail.com
             </a>
           </div>
         </motion.div>
@@ -895,7 +895,7 @@ export default function Page() {
               <p style={{ fontSize: 16, color: C.muted, lineHeight: 1.9, marginBottom: 40, maxWidth: 400 }}>New website, performance overhaul, or long-term dev partner - I'd love to hear what you're building.</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 40 }}>
                 {[
-                  { icon: '✉', label: 'Email', value: 'aashira28@gmail.com', href: 'mailto:aashira28@gmail.com' },
+                  { icon: '✉', label: 'Email', value: 'aaashirahmed.official@gmail.com', href: 'mailto:aaashirahmed.official@gmail.com' },
                   { icon: '📱', label: 'WhatsApp', value: '0343 0204417', href: 'tel:+923430204417' },
                   { icon: '🔗', label: 'LinkedIn', value: 'aashir-ahmed', href: 'https://linkedin.com/in/aashir-ahmed-2bb975115' },
                   { icon: '📍', label: 'Location', value: 'Karachi, Pakistan', href: null },
@@ -968,7 +968,7 @@ export default function Page() {
                     <span>{{ idle: 'Send Message ↗', loading: 'Sending...', sent: "Sent! I'll be in touch ✓", error: 'Failed - email me directly' }[formStatus]}</span>
                   </button>
                   <p style={{ fontSize: 11, color: C.muted, textAlign: 'center', fontFamily: "'JetBrains Mono', monospace" }}>
-                    Or: <a href="mailto:aashira28@gmail.com" style={{ color: C.violet2, textDecoration: 'none' }}>aashira28@gmail.com</a>
+                    Or: <a href="mailto:aaashirahmed.official@gmail.com" style={{ color: C.violet2, textDecoration: 'none' }}>aaashirahmed.official@gmail.com</a>
                   </p>
                 </form>
               </div>
@@ -992,7 +992,7 @@ export default function Page() {
               <div style={{ display: 'flex', gap: 8 }}>
                 {[
                   { l: 'in', href: 'https://linkedin.com/in/aashir-ahmed-2bb975115', title: 'LinkedIn' },
-                  { l: '✉', href: 'mailto:aashira28@gmail.com', title: 'Email' },
+                  { l: '✉', href: 'mailto:aaashirahmed.official@gmail.com', title: 'Email' },
                 ].map((s, i) => (
                   <a key={i} href={s.href} title={s.title} target={s.href.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer"
                     onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = C.violet + '55'; (e.currentTarget as HTMLElement).style.color = C.violet2; onEnter(); }}
@@ -1015,7 +1015,7 @@ export default function Page() {
             <div>
               <div style={{ fontSize: 9, fontFamily: "'JetBrains Mono', monospace", letterSpacing: '.2em', textTransform: 'uppercase', color: C.violet, marginBottom: 18 }}>Contact</div>
               {[
-                { label: 'Email', val: 'aashira28@gmail.com', href: 'mailto:aashira28@gmail.com' },
+                { label: 'Email', val: 'aaashirahmed.official@gmail.com', href: 'mailto:aaashirahmed.official@gmail.com' },
                 { label: 'Phone', val: '0343 0204417', href: 'tel:+923430204417' },
                 { label: 'Location', val: 'Karachi, Pakistan', href: null },
               ].map((c, i) => (
